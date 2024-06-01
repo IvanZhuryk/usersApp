@@ -1,0 +1,13 @@
+<div>
+  <ul class="flex overflow-x-scroll ml-auto mr-auto w-[300px]">
+    @for (page of pages; track $index) {
+    <li
+      class="border border-[#fe5f1e] rounded p-1 min-w-[28px] text-center"
+      [ngClass]="{ 'bg-[#fe5f1e] text-white': page == currentPage }"
+      (click)="pageClicked(page)"
+    >
+      {{ page }}
+    </li>
+    }
+  </ul>
+</div>

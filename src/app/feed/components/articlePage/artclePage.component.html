@@ -1,0 +1,42 @@
+@if (data$|async; as data) {
+<article>
+  <div class="flex flex-col bg-[#333] text-white mb-2">
+    <div class="flex items-center">
+      <img
+        class="rounded-[16px] mr-2 ml-2"
+        [src]="data.article.author.image"
+        alt="Author image"
+      />
+      <div class="flex flex-col">
+        <span>{{ data.article.author.username }}</span>
+        <span>{{ data.article.createdAt | date }}</span>
+      </div>
+    </div>
+    <div class="flex flex-col items-start ml-2">
+      <button class="border pl-1 pr-1 mb-1 border-[#ccc] text-[#ccc]">
+        + Follow {{ data.article.author.username }}
+      </button>
+      <button
+        class="border pl-1 pr-1 flex items-center mb-1 border-[#5CB85C] text-[#5CB85C]"
+      >
+        <mat-icon class="">favorite</mat-icon>
+        <span class="ml-1"
+          >Favorite Article ({{ data.article.favoritesCount }})</span
+        >
+      </button>
+    </div>
+  </div>
+  <div>
+    <p class="text-center">{{ data.article.body }}</p>
+    <div class="flex mt-2 pb-2 overflow-x-scroll">
+      @for (item of data.article.tagList; track $index) {
+      <div
+        class="mr-[4px] bg-[#fe5f1e] text-white rounded-[15px] pr-[6px] pl-[6px] pt-[3px] pb-[3px]"
+      >
+        {{ item }}
+      </div>
+      }
+    </div>
+  </div>
+</article>
+}

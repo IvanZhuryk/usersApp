@@ -1,0 +1,58 @@
+@if (data$ |async; as data) {
+<div class="w-[320px]">
+  <div class="w-[300px] ml-auto mr-auto">
+    <h1 class="max-w-max ml-auto mr-auto">
+      {{ haveAcount ? "Sign in" : "Sign up" }}
+    </h1>
+    <p class="max-w-max ml-auto mr-auto">
+      <a (click)="onSwitchMode()">{{
+        haveAcount ? "Have`t an account? Register" : "Have an account? Login"
+      }}</a>
+    </p>
+    @if (data.backendErrors) {
+    <backend-error-messages
+      [backendErrors]="data.backendErrors"
+    ></backend-error-messages>
+    }
+    <form
+      [formGroup]="haveAcount ? loginForm : registerForm"
+      (ngSubmit)="onSubmit()"
+      class="w-[280px] mt-2"
+    >
+      @if (!haveAcount) {
+      <fieldset class="mb-[5px]">
+        <input
+          class="border rounded w-[280px] pt-[8px] pb-[8px] pr-[12px] pl-[12px]"
+          type="text"
+          placeholder="UserName"
+          formControlName="username"
+        />
+      </fieldset>
+      }
+      <fieldset class="mb-[5px]">
+        <input
+          class="border rounded w-[280px] pt-[8px] pb-[8px] pr-[12px] pl-[12px]"
+          type="text"
+          placeholder="Email"
+          formControlName="email"
+        />
+      </fieldset>
+      <fieldset class="mb-[5px]">
+        <input
+          class="border rounded w-[280px] pt-[8px] pb-[8px] pr-[12px] pl-[12px]"
+          type="password"
+          placeholder="Password"
+          formControlName="password"
+        />
+      </fieldset>
+      <button
+        class="disabled:bg-gray-500 disabled:border-gray-500 float-right bg-[#fe5f1e] text-white border border-[#fe5f1e] rounded pt-[12px] pb-[12px] pr-[24px] pl-[24px] mt-2 font-medium"
+        type="submit"
+        [disabled]="data.isSubmiting"
+      >
+        {{ haveAcount ? "Sign in" : "Sign up" }}
+      </button>
+    </form>
+  </div>
+</div>
+}

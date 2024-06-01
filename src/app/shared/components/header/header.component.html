@@ -1,0 +1,11 @@
+<header class="mb-[30px]">
+  <nav class="max-w-[280px] flex justify-between mr-auto ml-auto pr-[10px]">
+    <a routerLink="/feed">Feed</a>
+    <div class="w-[100px] flex justify-between">
+      <a routerLink="/feed">Home</a>
+      @if (isLoading) {
+      <a routerLink="/auth">LogOut</a>
+      }@else {<a routerLink="/auth">Sign In</a>}
+    </div>
+  </nav>
+</header>

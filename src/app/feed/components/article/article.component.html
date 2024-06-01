@@ -1,0 +1,33 @@
+<article class="w-[300px] h-[310px] ml-auto mr-auto border-2 rounded p-2 mb-2">
+  <div class="flex justify-between items-center">
+    <div class="flex justify-between items-center">
+      <img class="rounded-[16px] mr-2" [src]="author.image" alt="UserImage" />
+      <div class="flex flex-col">
+        <div class="w-max">{{ author.username }}</div>
+        <span>{{ createdAt | date }}</span>
+      </div>
+    </div>
+    <div class="flex border border-[#fe5f1e] rounded p-1 cursor-pointer">
+      <mat-icon>favorite</mat-icon>
+      <div>{{ favoriteCount }}</div>
+    </div>
+  </div>
+  <div>
+    <p class="text-[20px] h-[100px] font-[600] overflow-hidden">
+      {{ title }}
+    </p>
+    <p class="text-[16px] h-[50px] opacity-65 overflow-hidden">
+      {{ body }}
+    </p>
+  </div>
+  <span><a [routerLink]="[slug]">Read more...</a></span>
+  <ul class="flex overflow-x-scroll">
+    @for (item of tags; track $index) {
+    <li
+      class="mr-[4px] bg-[#fe5f1e] text-white rounded-[15px] pr-[6px] pl-[6px] pt-[3px] pb-[3px]"
+    >
+      {{ item }}
+    </li>
+    }
+  </ul>
+</article>

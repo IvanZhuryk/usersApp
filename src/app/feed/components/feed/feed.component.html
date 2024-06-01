@@ -1,0 +1,49 @@
+@if (data$ |async; as data) {
+<div class="flex justify-around mb-2">
+  <p>Filter by tag:</p>
+  <form [formGroup]="tagForm">
+    <select
+      formControlName="tag"
+      (ngModelChange)="filterArticlesByTag()"
+      class="border-2 rounded"
+    >
+      <option value="All" selected>All</option>
+      @for (item of data.tags; track $index) {
+
+      <option [value]="item">
+        {{ item }}
+      </option>
+      }
+    </select>
+  </form>
+</div>
+@if (!data.filteredArticles?.length ) { @for (item of
+data.articles?.slice(start,end); track item.createdAt) {
+<ua-article
+  [author]="item.author"
+  [body]="item.body"
+  [favoriteCount]="item.favoritesCount"
+  [title]="item.title"
+  [tags]="item.tagList"
+  [createdAt]="item.createdAt"
+  [slug]="item.slug"
+></ua-article>
+}@if (data.articles !== undefined) {
+<ua-pagination
+  [totalItems]="data.articles?.length || 0"
+  [ItemsPerPage]="ItemsPerPage"
+  [currentPage]="currentPage"
+  (onClick)="changePage($event)"
+></ua-pagination>
+} @else {null} }@else { @for (item of data.filteredArticles ; track
+item.createdAt) {
+<ua-article
+  [author]="item.author"
+  [body]="item.body"
+  [favoriteCount]="item.favoritesCount"
+  [title]="item.title"
+  [tags]="item.tagList"
+  [createdAt]="item.createdAt"
+  [slug]="item.slug"
+></ua-article>
+} } }
