@@ -2,7 +2,7 @@ import { BackendErrorsInterface } from '../../shared/types/BackendErrors.interfa
 import { CurrentUserInterface } from '../../shared/types/currentUser.interface';
 import { LoginReqInterface } from '../types/loginReq.interface';
 import { RegisterReqInterface } from './../types/registerReq.interface';
-import { createActionGroup, props } from '@ngrx/store';
+import { createActionGroup, props, emptyProps } from '@ngrx/store';
 
 export const authActions = createActionGroup({
   source: 'auth',
@@ -13,5 +13,9 @@ export const authActions = createActionGroup({
     Login: props<{ request: LoginReqInterface }>(),
     'Login Success': props<{ currentUser: CurrentUserInterface }>(),
     'Login Failure': props<{ errors: BackendErrorsInterface }>(),
+    LogOut: emptyProps(),
+    'Get Current User': emptyProps(),
+    'Get Current User Success': props<{ currentUser: CurrentUserInterface }>(),
+    'Get Current User Failure': props<{ errors: BackendErrorsInterface }>(),
   },
 });

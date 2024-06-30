@@ -23,4 +23,8 @@ export class AuthService {
       .post<AuthResInterface>(url, data)
       .pipe(map((response) => response.user));
   }
+  getCurrentUser(): Observable<CurrentUserInterface> {
+    const url = 'https://api.realworld.io/api/user';
+    return this.http.get<AuthResInterface>(url).pipe(map((res) => res.user));
+  }
 }
