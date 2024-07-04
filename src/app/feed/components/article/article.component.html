@@ -3,7 +3,9 @@
     <div class="flex justify-between items-center">
       <img class="rounded-[16px] mr-2" [src]="author.image" alt="UserImage" />
       <div class="flex flex-col">
-        <div class="w-max">{{ author.username }}</div>
+        <a [routerLink]="'/profil/' + author.username"
+          ><div class="w-max">{{ author.username }}</div></a
+        >
         <span>{{ createdAt | date }}</span>
       </div>
     </div>

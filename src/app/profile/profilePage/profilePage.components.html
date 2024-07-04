@@ -1,0 +1,43 @@
+@if (data$ |async; as data) {
+<div class="w-[320px]">
+  <section class="bg-[#f3f3f3] flex flex-col items-center">
+    <div class="pt-2">
+      <p class="mr-auto ml-auto w-max mb-2">{{data.profile?.username}}</p>
+      <img
+        class="w-[100px] h-[100px] rounded-[50px] mr-auto ml-auto mb-2"
+        [src]="data.profile?.image"
+      />
+    </div>
+    @if (data.profile?.following) {
+    <button class="border-2 rounded-md mb-2 pl-[10px] pr-[10px] w-max">
+      ✓ Following {{ data.profile?.username}}
+    </button>
+    } @else {
+    <button
+      (click)="followUser()"
+      class="border-2 rounded-md mb-2 pl-[10px] pr-[10px] w-max"
+    >
+      + Follow {{ data.profile?.username}}
+    </button>
+    }
+  </section>
+  <section>
+    <div class="flex w-[300px] mr-auto ml-auto border-b mb-2 justify-around">
+      <h1 class="border-b-2 border-[#fe5f1e]">My Articles</h1>
+      <h1 class="">Favorited Articles</h1>
+    </div>
+    @for (item of data.articles; track $index) {
+    <ua-article
+      [author]="item.author"
+      [body]="item.body"
+      [favoriteCount]="item.favoritesCount"
+      [title]="item.title"
+      [tags]="item.tagList"
+      [createdAt]="item.createdAt"
+      [slug]="item.slug"
+    ></ua-article>
+    }
+  </section>
+  <section></section>
+</div>
+}

@@ -13,4 +13,10 @@ export const routes: Routes = [
       import('../app/feed/feed.routes').then((m) => m.FeedRoutes),
     canActivate: [canActivate],
   },
+  {
+    path: 'profil',
+    loadChildren: () =>
+      import('../app/profile/profile.routes').then((m) => m.ProfileRoutes),
+    canActivate: [canActivate],
+  },
 ];
