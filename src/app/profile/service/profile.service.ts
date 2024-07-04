@@ -26,10 +26,19 @@ export class ProfileService {
       })
       .pipe(map((res) => res));
   }
-  postFollowUser(username: string): Observable<ProfileInterface> {
+  postFollowUser(
+    username: string,
+    follow: boolean
+  ): Observable<ProfileInterface> {
     const url = `https://api.realworld.io/api/profiles/${username}/follow`;
-    return this.http
-      .post<ProfileResInterface>(url, null)
-      .pipe(map((res) => res.profile));
+    if (follow) {
+      return this.http
+        .delete<ProfileResInterface>(url)
+        .pipe(map((res) => res.profile));
+    } else {
+      return this.http
+        .post<ProfileResInterface>(url, null)
+        .pipe(map((res) => res.profile));
+    }
   }
 }

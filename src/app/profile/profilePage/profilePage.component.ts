@@ -31,7 +31,12 @@ export class ProfilePageComponent implements OnInit {
   }
   followUser(): void {
     this.store.dispatch(
-      profileActions.postFollowUser({ username: this.username })
+      profileActions.postFollowUser({ username: this.username, follow: false })
+    );
+  }
+  unFollowUser(): void {
+    this.store.dispatch(
+      profileActions.postFollowUser({ username: this.username, follow: true })
     );
   }
 }

@@ -12,7 +12,7 @@ export const profileActions = createActionGroup({
     'Get users articles': props<{ username: string }>(),
     'Get users articles Success': props<{ articles: FeedResInterface }>(),
     'Get users artciles Failure': props<{ errors: BackendErrorsInterface }>(),
-    'Post Follow User': props<{ username: string }>(),
+    'Post Follow User': props<{ username: string; follow: boolean }>(),
     'Post Follow User Success': props<{ profile: ProfileInterface }>(),
     'Post Follow User Failure': props<{ errors: BackendErrorsInterface }>(),
   },

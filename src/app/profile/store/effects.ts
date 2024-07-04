@@ -56,8 +56,8 @@ export const postFollowUserEffect = createEffect(
   (actions$ = inject(Actions), profileservice = inject(ProfileService)) => {
     return actions$.pipe(
       ofType(profileActions.postFollowUser),
-      switchMap(({ username }) => {
-        return profileservice.postFollowUser(username).pipe(
+      switchMap(({ username, follow }) => {
+        return profileservice.postFollowUser(username, follow).pipe(
           map((profile: ProfileInterface) => {
             return profileActions.postFollowUserSuccess({ profile });
           }),
