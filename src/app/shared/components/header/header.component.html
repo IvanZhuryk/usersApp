@@ -1,9 +1,8 @@
 <header class="mb-[30px]">
-  <nav class="max-w-[280px] flex justify-between mr-auto ml-auto pr-[10px]">
+  <nav class="max-w-[280px] flex justify-between mr-auto ml-auto">
     <a routerLink="/feed">Feed</a>
-    <div class="w-[100px] flex justify-between">
+    <div class="w-max flex justify-between">
       @if (isLoading| async) {
-      <a routerLink="/feed">Profil</a>
       <a routerLink="/auth" (click)="logOut()">LogOut</a>
       }@else {<a routerLink="/auth">Sign In</a>}
     </div>

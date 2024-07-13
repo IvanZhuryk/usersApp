@@ -1,7 +1,12 @@
 import { Routes } from '@angular/router';
 import { canActivate } from './shared/guards/authGuard';
+import { WelcomeComponent } from './shared/components/welcome/welcome.component';
 
 export const routes: Routes = [
+  {
+    path: '',
+    component: WelcomeComponent,
+  },
   {
     path: 'auth',
     loadChildren: () =>
