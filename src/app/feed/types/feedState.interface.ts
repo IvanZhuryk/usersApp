@@ -10,5 +10,5 @@ export interface FeedInterface {
   articlesCount: number | null | undefined;
   validationErrors: BackendErrorsInterface | null;
   tags: string[] | null | undefined;
-  article: SingleArticleRes | null | undefined;
+  article: ArticleInterface | null | undefined;
 }

@@ -8,6 +8,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { TagsResInterface } from '../types/tagsRes.interface';
 import { SingleArticleRes } from '../types/singleArticleRes.interface';
+import { ArticleInterface } from '../types/article.interface';
 
 export const getFeedEffect = createEffect(
   (action$ = inject(Actions), feedService = inject(FeedService)) => {
@@ -76,6 +77,28 @@ export const getSingleArticleEffect = createEffect(
           catchError((errorResponse: HttpErrorResponse) => {
             return of(
               feedActions.getSingleArticleFailure({
+                errors: errorResponse.error.errors,
+              })
+            );
+          })
+        );
+      })
+    );
+  },
+  { functional: true }
+);
+export const postFavoriteArticleEffect = createEffect(
+  (actions$ = inject(Actions), feedService = inject(FeedService)) => {
+    return actions$.pipe(
+      ofType(feedActions.postFavoriteAtricle),
+      switchMap(({ slug, favorite }) => {
+        return feedService.postFavoriteArticle(slug, favorite).pipe(
+          map((article: SingleArticleRes) => {
+            return feedActions.postFavoriteAtricleSuccess({ article });
+          }),
+          catchError((errorResponse: HttpErrorResponse) => {
+            return of(
+              feedActions.postFavoriteArticleFailure({
                 errors: errorResponse.error.errors,
               })
             );

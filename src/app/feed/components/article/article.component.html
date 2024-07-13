@@ -9,10 +9,24 @@
         <span>{{ createdAt | date }}</span>
       </div>
     </div>
-    <div class="flex border border-[#fe5f1e] rounded p-1 cursor-pointer">
+    @if (favorited) {
+    <div
+      class="flex border border-[#fe5f1e] bg-[#fe5f1e] rounded p-1 cursor-pointer"
+      (click)="handleFavorited(true)"
+    >
+      <mat-icon class="text-white">favorite</mat-icon>
+      <div class="text-white">{{ favoriteCount }}</div>
+    </div>
+
+    }@else {
+    <div
+      class="flex border border-[#fe5f1e] rounded p-1 cursor-pointer"
+      (click)="handleFavorited(false)"
+    >
       <mat-icon>favorite</mat-icon>
       <div>{{ favoriteCount }}</div>
     </div>
+    }
   </div>
   <div>
     <p class="text-[20px] h-[100px] font-[600] overflow-hidden">
@@ -22,7 +36,12 @@
       {{ body }}
     </p>
   </div>
+  @if (feedRout) {
   <span><a [routerLink]="[slug]">Read more...</a></span>
+  }@else {
+  <span><a routerLink="/feed/{{ slug }}">Read more...</a></span>
+  }
+
   <ul class="flex overflow-x-scroll">
     @for (item of tags; track $index) {
     <li

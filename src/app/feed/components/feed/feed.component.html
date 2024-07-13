@@ -27,6 +27,8 @@ data.articles?.slice(start,end); track item.createdAt) {
   [tags]="item.tagList"
   [createdAt]="item.createdAt"
   [slug]="item.slug"
+  [favorited]="item.favorited"
+  [feedRout]="true"
 ></ua-article>
 }@if (data.articles !== undefined) {
 <ua-pagination
@@ -45,5 +47,7 @@ item.createdAt) {
   [tags]="item.tagList"
   [createdAt]="item.createdAt"
   [slug]="item.slug"
+  [favorited]="item.favorited"
+  [feedRout]="true"
 ></ua-article>
 } } }

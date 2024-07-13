@@ -3,6 +3,7 @@ import { FeedResInterface } from '../types/feedRes.interface';
 import { BackendErrorsInterface } from '../../shared/types/BackendErrors.interface';
 import { TagsResInterface } from '../types/tagsRes.interface';
 import { SingleArticleRes } from '../types/singleArticleRes.interface';
+import { ArticleInterface } from '../types/article.interface';
 
 export const feedActions = createActionGroup({
   source: 'feed',
@@ -18,5 +19,10 @@ export const feedActions = createActionGroup({
     'Get Single Article': props<{ slug: string }>(),
     'Get Single Article Success': props<{ article: SingleArticleRes }>(),
     'Get Single Article Failure': props<{ errors: BackendErrorsInterface }>(),
+    'Post Favorite Atricle': props<{ slug: string; favorite: boolean }>(),
+    'Post Favorite Atricle Success': props<{ article: SingleArticleRes }>(),
+    'Post Favorite Article Failure': props<{
+      errors: BackendErrorsInterface;
+    }>(),
   },
 });

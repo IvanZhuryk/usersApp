@@ -65,9 +65,24 @@ const feedFeature = createFeature({
     on(feedActions.getSingleArticleSuccess, (state, action) => ({
       ...state,
       isSubmitting: false,
-      article: action.article,
+      article: action.article.article,
     })),
     on(feedActions.getSingleArticleFailure, (state, action) => ({
+      ...state,
+      isSubmitting: false,
+      validationErrors: action.errors,
+    })),
+    on(feedActions.postFavoriteAtricle, (state) => ({
+      ...state,
+      isSubmitting: true,
+      validationErrors: null,
+    })),
+    on(feedActions.postFavoriteAtricleSuccess, (state, action) => ({
+      ...state,
+      isSubmitting: false,
+      article: action.article.article,
+    })),
+    on(feedActions.postFavoriteArticleFailure, (state, action) => ({
       ...state,
       isSubmitting: false,
       validationErrors: action.errors,
